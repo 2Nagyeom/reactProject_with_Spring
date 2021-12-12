@@ -16,7 +16,7 @@ const Logotext = styled.p`
     font-size : 100px;
     font-weight : bold;
     text-align : center;
-    color : #fc7f02;
+    color : orange;
 `;
 
 const ContentDiv = styled.div`
@@ -28,7 +28,8 @@ const ContentBox = styled.div`
     background: white;
     width: 400px;
     height: auto;
-    border-radius : 10%;
+    border-radius : 2%;
+    box-shadow: 1px 2px 6px gray;
     text-align : center;
 `;
 
@@ -44,7 +45,7 @@ const Contentnum = styled.input`
     width: 300px;
     height : 35px;
     margin-bottom : 2%;
-    border-color: #b9bcb8;
+    border: solid 2px orange;
     border-radius : 5px;
 `;
 
@@ -52,7 +53,7 @@ const Contentpwd = styled.input`
     width: 300px;
     height : 35px;
     margin-bottom : 5%;
-    border-color: #b9bcb8;
+    border: solid 2px orange;
     border-radius : 5px;
 `;
 
@@ -82,7 +83,7 @@ const ContentorText = styled.p`
 `;
 
 const SignupButton = styled.button`
-    width: 260px;
+    width: 200px;
     height : 40px;
     margin-bottom : 10%;
     background: #fe6b6b;
@@ -97,7 +98,6 @@ const SignupButton = styled.button`
 function Login() {
     return (
         <Body>
-
             <HeadLogo>
                 <Logotext>ShowBlog</Logotext>
             </HeadLogo>
