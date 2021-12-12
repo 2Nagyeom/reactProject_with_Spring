@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import X from "./img/X.png"
 
 const Body = styled.div`
     position : absolute;
@@ -30,22 +31,27 @@ const ContentBox = styled.div`
     `;
 
 const ContentDiv = styled.div`
-    padding-bottom : 5%;
+    padding-bottom : 20px;
+`;
+
+const Xdiv = styled.div`
+    display: flex;
+    margin-bottom : -60px;
+    align-items : center;
 `;
 
 const ContentmainText = styled.p`
-    padding-left : 5%;
+    padding-left : 10px;
     color : black;
     font-size : 40px;
     font-weight : bold;
     display : block;
-    padding-top : 2%;
+    margin-right : 210px;
     text-align : left;
-    margin-bottom: -5%;
 `;
 
 const ContentaddText = styled.p`
-    padding-left : 5%;
+    padding-left : 10px;
     color : gray;
     font-size : 20px;
     display : block;
@@ -135,7 +141,13 @@ function SignUp() {
             </HeadLogo>
             <ContentBox>
                 <ContentDiv>
-                    <ContentmainText>가입하기</ContentmainText>
+                    <Xdiv>
+                        <ContentmainText>가입하기</ContentmainText>
+                        <img src={X} style={{
+                            width: 25,
+                            height: 25,
+                        }} />
+                    </Xdiv>
                     <ContentaddText>매우 빠르고 쉽습니다.</ContentaddText>
                     <Content__></Content__>
                 </ContentDiv>

@@ -45,7 +45,8 @@ const Contentnum = styled.input`
     width: 300px;
     height : 35px;
     margin-bottom : 2%;
-    border: solid 2px orange;
+    border: solid 2px #a5a7a3;
+    background-color: rgb(239, 242, 245);
     border-radius : 5px;
 `;
 
@@ -53,7 +54,8 @@ const Contentpwd = styled.input`
     width: 300px;
     height : 35px;
     margin-bottom : 5%;
-    border: solid 2px orange;
+    border: solid 2px #a5a7a3;
+    background-color: rgb(239, 242, 245);
     border-radius : 5px;
 `;
 
@@ -83,14 +85,27 @@ const ContentorText = styled.p`
 `;
 
 const SignupButton = styled.button`
-    width: 200px;
+    width: 145px;
     height : 40px;
     margin-bottom : 10%;
+    margin-right : 3%;
     background: #fe6b6b;
     color : white;
     font-weight : bold;
     border-radius : 5px;
     border : 2px solid #fe6b6b;
+`;
+
+const BackButton = styled.button`
+    width: 145px;
+    height : 40px;
+    margin-bottom : 10%;
+    background : #a5a7a3;
+    color : white;
+    font-weight : bold;
+    border-radius : 5px;
+    border: solid 2px #a5a7a3;
+    
 `;
 
 
@@ -109,6 +124,7 @@ function Login() {
                 <ContentnotIdText>계정을 잊으셨나요?</ContentnotIdText>
                 <ContentorText>-----------------------또는-----------------------</ContentorText>
                 <SignupButton>새계정 만들기</SignupButton>
+                <BackButton>뒤로가기</BackButton>
             </ContentBox>
         </Body>
 
