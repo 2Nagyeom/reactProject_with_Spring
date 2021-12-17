@@ -10,7 +10,7 @@ import Board from './board';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Board />
+    <Main />
   </React.StrictMode>,
   document.getElementById('root')
 );

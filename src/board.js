@@ -109,6 +109,7 @@ const BackButton = styled.button`
 
 `;
 
+// 게시물 페이지 메인 로고 '게시물 작성하기'
 const BoardMakeLogo = styled.div`
     width: 100%;
     height: 50px;
@@ -117,6 +118,7 @@ const BoardMakeLogo = styled.div`
     font-Size: 20px;
 `;
 
+// 게시물 로고랑 작성 분리선
 const BoardMakeLine = styled.div`
     width: 100%;
     height: 1px;
@@ -124,11 +126,13 @@ const BoardMakeLine = styled.div`
     margin-top : -4px;
     `;
 
+// 작성자 이름표시
 const BoardMakeName = styled.p`
     padding-left : 10px;
     font-size : 15px;
     `;
 
+// 텍스트할 디브 스타일
 const BoardMakeDiv = styled.div`
     width: 95%;
     height : 70px;
@@ -136,6 +140,7 @@ const BoardMakeDiv = styled.div`
     
     `;
 
+// 텍스트 치기
 const BoardMakeText = styled.input`
     width : 95%;
     height : 100px;
@@ -146,6 +151,7 @@ const BoardMakeText = styled.input`
     margin-bottom : 13%;
     `;
 
+// 파일첨부 버튼 누르는 디브
 const BoardAddItemDiv = styled.div`
     width : 100%;
     height : 50px;
@@ -154,6 +160,7 @@ const BoardAddItemDiv = styled.div`
     display: flex;
     `;
 
+// 파일첨부 옆 텍스트 
 const BoardAddItemText = styled.p`
     font-size : 15px;
     font-weight : bold;
@@ -161,6 +168,16 @@ const BoardAddItemText = styled.p`
     margin-top : 15px;
     `;
 
+// 파일첨부하는 버튼 디브
+const BoardMakeButtonDiv = styled.div`
+    display: flex;
+    padding-left : 30%;
+    padding-top : 30%;
+    align-items : center;
+`;
+
+
+// 파일첨부하기 버튼
 const BoardAddItemButton = styled.button`
     margin-left : 70%;
     margin-top : 10px;
@@ -171,11 +188,29 @@ const BoardAddItemButton = styled.button`
     font-weight : bold;
     `
 
-const BoardMakeButtonDiv = styled.div`
-    display: flex;
-    padding-left : 30%;
-    padding-top : 30%;
-    align-items : center;
+const BoardMakeYesButton = styled.button`
+    width: 145px;
+    height : 40px;
+    margin-bottom : 10%;
+    margin-left : 5px;
+    background: #f7c487;
+    color: orange;
+    font-weight : bold;
+    border-radius : 5px;
+    border: 2px solid #f7c487;
+`;
+
+
+const BoardMakeNoButton = styled.button`
+    width: 145px;
+    height : 40px;
+    margin-bottom : 10%;
+    margin-left : 5px;
+    background: #c3bdbb;
+    color : black;
+    font-weight : bold;
+    border-radius : 5px;
+    border: 2px solid #c3bdbb;
 `;
 
 
@@ -209,8 +244,8 @@ function Board() {
                     </BoardAddItemDiv>
                 </BoardMakeDiv>
                 <BoardMakeButtonDiv>
-                    <SignupButton onClick={() => setModalIsOpen(false)}>게시하기</SignupButton>
-                    <BackButton onClick={() => setModalIsOpen(false)}>뒤로가기</BackButton>
+                    <BoardMakeYesButton onClick={() => setModalIsOpen(false)}>하기</BoardMakeYesButton>
+                    <BoardMakeNoButton onClick={() => setModalIsOpen(false)}>뒤로가기</BoardMakeNoButton>
                 </BoardMakeButtonDiv>
             </Modal>
         </Body>
