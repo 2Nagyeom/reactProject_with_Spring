@@ -6,10 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import Login from './signs/login';
 import SignUp from './signs/signup';
 import Main from './main';
+import Board from './board';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <Board />
   </React.StrictMode>,
   document.getElementById('root')
 );
