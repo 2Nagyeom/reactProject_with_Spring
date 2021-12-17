@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import X from "./img/X.png"
+import X from "../img/X.png"
 
 const Body = styled.div`
     position : absolute;
