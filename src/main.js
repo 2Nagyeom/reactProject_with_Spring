@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import Modal from 'react-modal';
+import profile from './img/me.png';
+import friend from './img/friends.png';
+import group from './img/group.png';
+import watch from './img/watch.png';
+import pasttime from './img/pasttime.png';
+import save from './img/save.png';
+import event from './img/event.png';
+
 
 
 // body 태그 스타일
@@ -36,6 +44,13 @@ const Contentbar = styled.div`
 // 왼쪽 사이드 div 스타일
 const Leftside = styled.div`
     width : 400px;
+`;
+
+// 왼쪽 사이드 div에 들어가는 아이콘과 텍스트 같이 둘 디브 스타일
+const LeftContentDiv = styled.div`
+    display : flex;
+    padding-left : 20px;
+    weight : 100%;
 `;
 
 // 왼쪽 사이드 div에 들어가는 텍스트 스타일
@@ -84,7 +99,7 @@ const ContentBoardComent = styled.div`
     height : 30px;
     margin-left : 2%;
     margin-top : 1%;
-    border-radius : 10%;
+    border-radius : 5%;
     background-color : rgb(239, 242, 245);
     color : #62605e;
     padding-left : 10px;
@@ -120,11 +135,11 @@ const ContentBoardLiveButton = styled.button`
     height: 30px;
     margin-bottom : 10%;
     margin-left : 5%;
-    background: #f513a6;
-    color: #c3bdbb;
+    background: #f6b7ab;
+    color: black;
     font-weight : bold;
     border-radius : 5px;
-    border: 2px solid #f513a6;
+    border: 2px solid #f6b7ab;
     `;
 
 // 코멘트에 필요한 버튼(이거 누르면 게시물 작성으로 감)
@@ -133,10 +148,10 @@ const ContentBoardWriteButton = styled.button`
     height: 30px;
     margin-bottom : 10%;
     margin-left : 10px;
-    background: #1adf24;
+    background: #d9f6ab;
     font-weight : bold;
     border-radius : 5px;
-    border: 2px solid #1adf24; 
+    border: 2px solid #d9f6ab; 
     `;
 
 // 코멘트에 필요한 버튼(캡쳐한거 따라함)
@@ -145,10 +160,10 @@ const ContentBoardFeelButton = styled.button`
     height: 30px;
     margin-bottom : 10%;
     margin-left : 10px;
-    background: #f3eb0b;
+    background: #f6efc5;
     font-weight : bold;
     border-radius : 5px;
-    border: 2px solid #f3eb0b; 
+    border: 2px solid #f6efc5; 
     `;
 
 
@@ -404,8 +419,9 @@ const BoardAddItemButton = styled.button`
     background-color : orange;
     border : orange;
     font-weight : bold;
-    `
+    `;
 
+// 게시물 작성 완료 버튼
 const BoardMakeYesButton = styled.button`
     width: 145px;
     height : 40px;
@@ -418,7 +434,7 @@ const BoardMakeYesButton = styled.button`
     border: 2px solid #f7c487;
 `;
 
-
+// 게시물 작성 취소 버튼
 const BoardMakeNoButton = styled.button`
     width: 145px;
     height : 40px;
@@ -442,13 +458,35 @@ function Main() {
             </Headbar>
             <Contentbar>
                 <Leftside>
-                    <LeftContent>name</LeftContent>
-                    <LeftContent>친구</LeftContent>
-                    <LeftContent>show</LeftContent>
-                    <LeftContent>그룹</LeftContent>
-                    <LeftContent>과거의 오늘</LeftContent>
-                    <LeftContent>이벤트</LeftContent>
-                    <LeftContent>저장됌</LeftContent>
+                    <LeftContentDiv>
+                        <img src={profile} style={{ width: 30, height: 30, paddingTop: 25, }} />
+                        <LeftContent>name</LeftContent>
+                    </LeftContentDiv>
+                    <LeftContentDiv>
+                        <img src={friend} style={{ width: 30, height: 30, paddingTop: 25, }} />
+                        <LeftContent>친구</LeftContent>
+                    </LeftContentDiv>
+                    <LeftContentDiv>
+                        <img src={group} style={{ width: 30, height: 30, paddingTop: 25, }} />
+                        <LeftContent>그룹</LeftContent>
+                    </LeftContentDiv>
+                    <LeftContentDiv>
+                        <img src={watch} style={{ width: 30, height: 30, paddingTop: 25, }} />
+                        <LeftContent>watch</LeftContent>
+                    </LeftContentDiv>
+                    <LeftContentDiv>
+                        <img src={pasttime} style={{ width: 30, height: 30, paddingTop: 25, }} />
+                        <LeftContent>과거의 오늘</LeftContent>
+                    </LeftContentDiv>
+                    <LeftContentDiv>
+                        <img src={event} style={{ width: 30, height: 30, paddingTop: 25, }} />
+                        <LeftContent>이벤트</LeftContent>
+                    </LeftContentDiv>
+                    <LeftContentDiv>
+                        <img src={save} style={{ width: 30, height: 30, paddingTop: 25, }} />
+                        <LeftContent>저장됌</LeftContent>
+                    </LeftContentDiv>
+
                 </Leftside>
                 <BoardDiv>
                     <ContentpwdBoard>
