@@ -391,6 +391,7 @@ const BoardAddItemDiv = styled.div`
     border-radius : 5px;
     border: solid 2px #a5a7a3;
     display: flex;
+    margin-top : -5%;
     `;
 
 // 파일첨부 옆 텍스트 
@@ -405,8 +406,9 @@ const BoardAddItemText = styled.p`
 const BoardMakeButtonDiv = styled.div`
     display: flex;
     padding-left : 30%;
-    padding-top : 30%;
+    padding-top : 230px;
     align-items : center;
+    margin-top : -10%;
 `;
 
 
@@ -529,7 +531,7 @@ function Main() {
                                     </BoardAddItemDiv>
                                 </BoardMakeDiv>
                                 <BoardMakeButtonDiv>
-                                    <BoardMakeYesButton onClick={() => setModalIsOpen(false)}>하기</BoardMakeYesButton>
+                                    <BoardMakeYesButton onClick={() => setModalIsOpen(false)}>게시하기</BoardMakeYesButton>
                                     <BoardMakeNoButton onClick={() => setModalIsOpen(false)}>뒤로가기</BoardMakeNoButton>
                                 </BoardMakeButtonDiv>
                             </Modal>
