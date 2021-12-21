@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import X from '../img/X.png'
+import X from '../img/X.png';
+import { useNavigate, withRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
 
 const Body = styled.div`
     position : absolute;
@@ -133,7 +135,16 @@ const SignupButton = styled.button`
 
 
 
-function SignUp() {
+function SignUp({ props }) {
+    let navigation = useNavigate()
+    function register(params) {
+        navigation('/')
+    }
+
+    function back(params) {
+        navigation('/')
+    }
+
     return (
         <Body>
             <HeadLogo>
@@ -146,7 +157,7 @@ function SignUp() {
                         <img src={X} style={{
                             width: 25,
                             height: 25,
-                        }} />
+                        }} onClick={back} />
                     </Xdiv>
                     <ContentaddText>매우 빠르고 쉽습니다.</ContentaddText>
                     <Content__></Content__>
@@ -157,13 +168,9 @@ function SignUp() {
                 <Contentemail placeholder='이메일 입력'></Contentemail>
                 <Contentpwd placeholder='비밀번호 입력' type="password"></Contentpwd>
                 <Contentpwdcheck placeholder='비밀번호 확인' type="password"></Contentpwdcheck>
-                <SignupButton>회원가입하기</SignupButton>
+                <SignupButton onClick={register}>회원가입하기</SignupButton>
             </ContentBox>
         </Body >
-
-
-
-
     );
 }
 

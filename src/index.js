@@ -8,14 +8,19 @@ import SignUp from './signs/signup';
 import Main from './main';
 import Board from './board';
 
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+} from 'react-router-dom';
+
 ReactDOM.render(
-  <React.StrictMode>
-    <Main />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/main" element={<Main />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

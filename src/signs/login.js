@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 const Body = styled.div`
@@ -111,6 +112,10 @@ const BackButton = styled.button`
 
 
 function Login() {
+    let navigation = useNavigate()
+    function LoginClick(params) {
+        navigation('/main')
+    }
     return (
         <Body>
             <HeadLogo>
@@ -120,11 +125,12 @@ function Login() {
                 <ContentmainText>ShowBlog에 로그인</ContentmainText>
                 <Contentnum placeholder='전화번호 입력'></Contentnum>
                 <Contentpwd placeholder='비밀번호 입력' type="password"></Contentpwd>
-                <LoginButton>로그인하기</LoginButton>
+                <LoginButton onClick={LoginClick}>로그인하기</LoginButton>
                 <ContentnotIdText>계정을 잊으셨나요?</ContentnotIdText>
                 <ContentorText>-----------------------또는-----------------------</ContentorText>
-                <SignupButton>새계정 만들기</SignupButton>
-                <BackButton>뒤로가기</BackButton>
+                <Link to="/signup">
+                    <SignupButton>새계정 만들기</SignupButton>
+                </Link>
             </ContentBox>
         </Body>
 

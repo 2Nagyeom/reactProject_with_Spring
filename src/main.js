@@ -8,6 +8,7 @@ import watch from './img/watch.png';
 import pasttime from './img/pasttime.png';
 import save from './img/save.png';
 import event from './img/event.png';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -23,9 +24,10 @@ const Body = styled.body`
 const Headbar = styled.div`
     width: 100%;
     height: 80px;
-    margin-bottom : -20px;
+    margin-bottom : 50px;
     margin-top : -20px;
     padding-left : 10px;
+    display: flex;
 `;
 
 // 왼쪽 위 로고텍스트 스타일
@@ -34,6 +36,30 @@ const Logotext = styled.p`
     font-weight : bold;
     color : orange;
 `;
+
+// 오른쪽 위 사용자 이름
+const UserName = styled.p`
+    font-size : 20px;
+    font-weight : bold;
+    color : black;
+    padding-top : 25px; 
+    padding-left : 1000px;
+    `;
+
+// 오른쪽 위 로그아웃 버튼
+const LogoutButton = styled.button`
+    width: 100px;
+    height: 30px;
+    padding-top : ;
+    margin-top : 3%;
+    margin-left : 75px;
+    margin-right : 5px;
+    background: #c3bdbb;
+    color: black;
+    font-weight : bold;
+    border-radius : 5px;
+    border: 2px solid #c3bdbb;
+    `;
 
 // 로고div 제외한 모든 div의 부모 스타일
 const Contentbar = styled.div`
@@ -169,12 +195,28 @@ const ContentBoardFeelButton = styled.button`
 
 // 데이터 가지고올 게시물 list div 스타일
 const ContentBoardList = styled.div`
-width: 95%;
-height: 400px;
-background-color : white;
-box-shadow: 1px 2px 6px #a5a7a3;
-border-radius : 2%;
-margin-bottom : 30px;
+    width: 95%;
+    height: 600px;
+    background-color : white;
+    box-shadow: 1px 2px 6px #a5a7a3;
+    border-radius : 2%;
+    margin-bottom : 30px;
+    `;
+
+// list에 들어갈 이름 및 시간 넣을 디브
+const ContentBoardListDiv = styled.div`
+    width : 100%;
+    height : 70px;
+    /* background-color : green; */
+    `;
+
+// list에 들어갈 게시물
+const ContentBoardListView = styled.div`
+    width : 80%;
+    height : 400px;
+    margin: 0 auto;
+
+    background-color : yellow;
 `;
 
 // 캡쳐한 부분 만든 거 스타일 
@@ -450,13 +492,23 @@ const BoardMakeNoButton = styled.button`
 `;
 
 
-function Main() {
+function Main(params) {
+    let navigation = useNavigate();
+
+    function back(params) {
+        navigation('/')
+    }
+
+
     const [ModalIsOpen, setModalIsOpen] = useState(false);
+
 
     return (
         <Body>
             <Headbar>
                 <Logotext>ShowBlog</Logotext>
+                <UserName>안녕 님</UserName>
+                <LogoutButton onClick={back}>로그아웃하기</LogoutButton>
             </Headbar>
             <Contentbar>
                 <Leftside>
@@ -539,17 +591,45 @@ function Main() {
                         </ContentBoardButtonDiv>
                     </ContentBoard>
                     <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListDiv>
+                            <p style={{ paddingLeft: 20, }}>adadad</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardListView></ContentBoardListView>
                     </ContentBoardList>
                     <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListView></ContentBoardListView>
                     </ContentBoardList>
                     <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListView></ContentBoardListView>
                     </ContentBoardList>
                     <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListView>
+                        </ContentBoardListView>
                     </ContentBoardList>
                 </BoardDiv>
                 <Rightside>
                     <RightsidefriendBoard>
-                        <FriendBoardBoldText>친구신청</FriendBoardBoldText>
+                        <FriendBoardBoldText>소꿉친구신청</FriendBoardBoldText>
                         <FriendBoardText>이은비</FriendBoardText>
                         <FriendBoldTextDiv>
                             <FriendButton>수락</FriendButton>
