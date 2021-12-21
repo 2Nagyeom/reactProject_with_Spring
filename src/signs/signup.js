@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import X from '../img/X.png';
 import { useNavigate, withRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import axios from 'axios';
 
 const Body = styled.div`
     position : absolute;
@@ -136,6 +137,23 @@ const SignupButton = styled.button`
 
 
 function SignUp({ props }) {
+
+    const [input, setinput] = useState({
+        name: '',
+        num: '',
+        pwd: '',
+        pwd_check: '',
+        email: '',
+    });
+
+    const onChange = (e) => {
+        const { value, name } = e.target;
+        setinput({
+            ...input,
+            [name]: value
+        });
+    };
+
     let navigation = useNavigate()
     function register(params) {
         navigation('/')
@@ -144,6 +162,34 @@ function SignUp({ props }) {
     function back(params) {
         navigation('/')
     }
+
+    // pwd랑 비밀번호체크랑 일치하는거 if문 달기
+    function userInput() {
+        if (input.pwd == input.pwd_check) {
+            axios.get('http://sunsalman.iptime.org:8080/tableWrite', {
+                params: {
+                    name: input.name,
+                    num: input.num,
+                    pwd: input.pwd,
+                    email: input.email,
+                }
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .then(function () {
+                    // always executed
+                });
+        } else {
+            alert("비번다름 ㅅㄱ");
+        }
+
+    }
+
+    // useEffect(() => { userInput(); })
 
     return (
         <Body>
@@ -162,12 +208,11 @@ function SignUp({ props }) {
                     <ContentaddText>매우 빠르고 쉽습니다.</ContentaddText>
                     <Content__></Content__>
                 </ContentDiv>
-                <ContentFirstname placeholder='성'></ContentFirstname>
-                <ContentSecname placeholder='이름'></ContentSecname>
-                <Contentnum placeholder='전화번호 입력'></Contentnum>
-                <Contentemail placeholder='이메일 입력'></Contentemail>
-                <Contentpwd placeholder='비밀번호 입력' type="password"></Contentpwd>
-                <Contentpwdcheck placeholder='비밀번호 확인' type="password"></Contentpwdcheck>
+                <ContentFirstname name="name" placeholder='이름 입력' onChange={onChange}></ContentFirstname>
+                <Contentnum name="num" placeholder='전화번호 입력' onChange={onChange}></Contentnum>
+                <Contentemail name="email" placeholder='이메일 입력' onChange={onChange}></Contentemail>
+                <Contentpwd name="pwd" placeholder='비밀번호 입력' type="password" onChange={onChange}></Contentpwd>
+                <Contentpwdcheck name="pwd_check" placeholder='비밀번호 확인' type="password" onChange={onChange}></Contentpwdcheck>
                 <SignupButton onClick={register}>회원가입하기</SignupButton>
             </ContentBox>
         </Body >

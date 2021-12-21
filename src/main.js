@@ -9,6 +9,8 @@ import pasttime from './img/pasttime.png';
 import save from './img/save.png';
 import event from './img/event.png';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react/cjs/react.development';
+import axios from 'axios';
 
 
 
@@ -498,6 +500,28 @@ function Main(params) {
     function back(params) {
         navigation('/')
     }
+
+    function test() {
+        axios.get('http://sunsalman.iptime.org:8080/tableWrite', {
+            params: {
+                write: 'fsfdsd',
+                name: 'sass',
+                time: '1111',
+                picture: 'http://images.khan.co.kr/article/2021/09/19/2021091902000980800207612.jpg',
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+    }
+
+    useEffect(() => { test(); })
 
 
     const [ModalIsOpen, setModalIsOpen] = useState(false);
