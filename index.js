@@ -13,17 +13,14 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import { RecoilRoot, useResetRecoilState } from 'recoil';
 
 ReactDOM.render(
-  <RecoilRoot>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/main" element={<Main />} />
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
-  </RecoilRoot>,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/main" element={<Main />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );

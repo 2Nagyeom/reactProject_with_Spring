@@ -163,33 +163,28 @@ function SignUp({ props }) {
         navigation('/')
     }
 
-    useEffect(() => {
-        console.log(input);
-
-    }, [input])
-
     // pwd랑 비밀번호체크랑 일치하는거 if문 달기
     function userInput() {
         if (input.pwd == input.pwd_check) {
-            axios.post('http://sunsalman.iptime.org:8080/join', {
-                num: input.num,
-                name: input.name,
-                pwd: input.pwd,
-                email: input.email,
-                headers: {
-                    "Content-Type": 'application/json'
+            axios.get('http://sunsalman.iptime.org:8080/tableWrite', {
+                params: {
+                    name: input.name,
+                    num: input.num,
+                    pwd: input.pwd,
+                    email: input.email,
                 }
             })
                 .then(function (response) {
-                    console.log(response.data);
-                    navigation('/');
-                    alert('회원가입 되셨습니다!');
+                    console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
+                .then(function () {
+                    // always executed
+                });
         } else {
-            alert("비밀번호가 다릅니다. 다시 한 번 확인해주세요! ");
+            alert("비번다름 ㅅㄱ");
         }
 
     }
@@ -218,7 +213,7 @@ function SignUp({ props }) {
                 <Contentemail name="email" placeholder='이메일 입력' onChange={onChange}></Contentemail>
                 <Contentpwd name="pwd" placeholder='비밀번호 입력' type="password" onChange={onChange}></Contentpwd>
                 <Contentpwdcheck name="pwd_check" placeholder='비밀번호 확인' type="password" onChange={onChange}></Contentpwdcheck>
-                <SignupButton onClick={userInput}>회원가입하기</SignupButton>
+                <SignupButton onClick={register}>회원가입하기</SignupButton>
             </ContentBox>
         </Body >
     );

@@ -1,10 +1,6 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { RecoilRoot, useRecoilState } from 'recoil';
-import { AtomUserName } from '../atom/atom';
-
 
 const Body = styled.div`
     position : absolute;
@@ -117,49 +113,9 @@ const BackButton = styled.button`
 
 function Login() {
     let navigation = useNavigate()
-    const [atUserName, setAtUserName] = useRecoilState(AtomUserName)
-
     function LoginClick(params) {
         navigation('/main')
     }
-
-    const [input, setinput] = useState({
-        num: '',
-        pwd: '',
-    });
-
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setinput({
-            ...input,
-            [name]: value
-        });
-    };
-
-    function userLogin() {
-        axios.get('http://sunsalman.iptime.org:8080/login', {
-            params: {
-                num: input.num,
-                pwd: input.pwd,
-            }
-
-        }).then((res) => {
-            console.log(res.data);
-            setAtUserName(res.data.name)
-            alert('로그인 되셨습니다!')
-            navigation('/main')
-
-        }).catch((error) => {
-            console.log(error);
-        })
-
-    }
-
-    useEffect(() => {
-        console.log(input);
-
-    }, [input])
-
     return (
         <Body>
             <HeadLogo>
@@ -167,9 +123,9 @@ function Login() {
             </HeadLogo>
             <ContentBox>
                 <ContentmainText>ShowBlog에 로그인</ContentmainText>
-                <Contentnum name="num" placeholder='전화번호 입력' onChange={onChange}></Contentnum>
-                <Contentpwd name="pwd" placeholder='비밀번호 입력' type="password" onChange={onChange}></Contentpwd>
-                <LoginButton onClick={userLogin}>로그인하기</LoginButton>
+                <Contentnum placeholder='전화번호 입력'></Contentnum>
+                <Contentpwd placeholder='비밀번호 입력' type="password"></Contentpwd>
+                <LoginButton onClick={LoginClick}>로그인하기</LoginButton>
                 <ContentnotIdText>계정을 잊으셨나요?</ContentnotIdText>
                 <ContentorText>-----------------------또는-----------------------</ContentorText>
                 <Link to="/signup">

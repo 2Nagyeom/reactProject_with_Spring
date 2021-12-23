@@ -11,8 +11,6 @@ import event from './img/event.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react/cjs/react.development';
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
-import { AtomUserName } from './atom/atom';
 
 
 
@@ -109,7 +107,7 @@ const ContentpwdBoard = styled.div`
 // 이건 게시물 만들기 위한 버튼 위치 지정할 div 스타일
 const ContentBoard = styled.div`
     width: 95%;
-    height: 120px;
+    height: 100px;
     background-color : white;
     box-shadow: 1px 2px 6px #a5a7a3;
     border-radius : 2%;
@@ -148,7 +146,6 @@ const ContentBoardLine = styled.div`
     height : 1px;
     margin-left : 2%;
     background-color : #c3bdbb;
-    margin-top : 20px;
 `;
 
 // 코멘트에 필요한 버튼이 있을 div 스타일
@@ -212,7 +209,6 @@ const ContentBoardList = styled.div`
 const ContentBoardListDiv = styled.div`
     width : 100%;
     height : 70px;
-    display: flex;
     /* background-color : green; */
     `;
 
@@ -221,6 +217,8 @@ const ContentBoardListView = styled.div`
     width : 80%;
     height : 400px;
     margin: 0 auto;
+
+    background-color : yellow;
 `;
 
 // 캡쳐한 부분 만든 거 스타일 
@@ -414,7 +412,7 @@ const BoardMakeName = styled.p`
 // 텍스트할 디브 스타일
 const BoardMakeDiv = styled.div`
     width: 95%;
-    height : 90px;
+    height : 70px;
     padding-left : 10px;
     
     `;
@@ -459,16 +457,14 @@ const BoardMakeButtonDiv = styled.div`
 
 
 // 파일첨부하기 버튼
-const BoardAddItemInput = styled.div`
-    margin-left : 180px;
-    margin-top : 13px;
-    /* 
-    width: 50px;
-    height : 35px;
-    margin-bottom : 2%;
-    border: solid 2px #a5a7a3;
-    background-color: rgb(239, 242, 245);
-    border-radius : 5px; */
+const BoardAddItemButton = styled.button`
+    margin-left : 70%;
+    margin-top : 10px;
+    height : 30px;
+    border-radius : 10%;
+    background-color : orange;
+    border : orange;
+    font-weight : bold;
     `;
 
 // 게시물 작성 완료 버튼
@@ -500,106 +496,22 @@ const BoardMakeNoButton = styled.button`
 
 function Main(params) {
     let navigation = useNavigate();
-    const [atUserName, setAtUserName] = useRecoilState(AtomUserName)
+
     function back(params) {
         navigation('/')
     }
 
-    const [input, setinput] = useState({
-        text: '',
-        picture: '',
-    });
-
-    const [board, setBoard] = useState([])
-
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        // const img = e.target.files[0];
-        // const formData = new FormData();
-        // formData.append('file', img);
-        // console.log(formData);
-        // console.log(img);
-        setinput({
-            ...input,
-            [name]: value
-        });
-    };
-
-    let today = new Date();
-
-    function boardItems() {
-        axios.get('http://sunsalman.iptime.org:8080/boardAllResult', {
-            // write: input.text,
-            // name: 'sass',
-            // time: today.toLocaleString(),
-            // picture: input.picture,
-            // // picture: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fblankspace-dev.tistory.com%2F200&psig=AOvVaw13bNXvYjSn7o298VvYl8Uh&ust=1640273164741000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIChuYPc9_QCFQAAAAAdAAAAABAD',
-            // headers: {
-            //     "Content-Type": 'application/json'
-            // }
-        })
-            .then(function (response) {
-                console.log(response.data);
-                setBoard(response.data);
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
-    }
-
-    useEffect(() => {
-        boardItems();
-    }, []);
-
-    let year = today.getFullYear(); // 년도
-    let month = today.getMonth() + 1;  // 월
-    let date = today.getDate();  // 날짜
-
-    let hours = today.getHours(); // 시
-    let minutes = today.getMinutes();  // 분
-    let seconds = today.getSeconds();
-
-    function boardItemsPut() {
-        axios.post('http://sunsalman.iptime.org:8080/tableuse', {
-            userwrite: input.text,
-            username: atUserName,
-            usertime: year + '/' + month + '/' + date + ' ' + hours + ':' + minutes + ':' + seconds,
-            userpicture: input.picture,
-            // picture: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fblankspace-dev.tistory.com%2F200&psig=AOvVaw13bNXvYjSn7o298VvYl8Uh&ust=1640273164741000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIChuYPc9_QCFQAAAAAdAAAAABAD',
-            headers: {
-                "Content-Type": 'application/json'
-            }
-        })
-            .then(function (response) {
-                console.log(response.data);
-                boardItems()
-                alert('게시물을 작성하였습니다!')
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
-    }
-
-    function boardItemsDelete(id) {
-        axios.get('http://sunsalman.iptime.org:8080/boardDelete', {
+    function test() {
+        axios.get('http://sunsalman.iptime.org:8080/tableWrite', {
             params: {
-                id: id
-            },
-            headers: {
-                "Content-Type": 'application/json'
+                write: 'fsfdsd',
+                name: 'sass',
+                time: '1111',
+                picture: 'http://images.khan.co.kr/article/2021/09/19/2021091902000980800207612.jpg',
             }
         })
             .then(function (response) {
-                console.log(response.data);
-                boardItems()
-                alert('게시물을 삭제하였습니다!')
+                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -609,63 +521,17 @@ function Main(params) {
             });
     }
 
-    const [boardinput, setboardinput] = useState({
-        id: '',
-        username: '',
-        userpicture: '',
-        usertime: '',
-        userwrite: '',
+    useEffect(() => { test(); })
 
-    });
-
-    const onBoardChange = (e) => {
-        const { value, name } = e.target;
-        // const img = e.target.files[0];
-        // const formData = new FormData();
-        // formData.append('file', img);
-        // console.log(formData);
-        // console.log(img);
-        setboardinput({
-            ...boardinput,
-            [name]: value
-        });
-    };
-
-    function boardItemsEdit(id) {
-        axios.post('http://sunsalman.iptime.org:8080/boardEdit', {
-            userwrite: boardinput.userwrite,
-            username: boardinput.username,
-            usertime: boardinput.usertime,
-            userpicture: boardinput.userpicture,
-            headers: {
-                "Content-Type": 'application/json'
-            }
-        })
-            .then(function (response) {
-                console.log(response.data);
-                boardItems()
-                alert('게시물을 수정하였습니다!')
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
-    }
-
-    useEffect(() => {
-        console.log(boardinput);
-    }, [boardinput])
 
     const [ModalIsOpen, setModalIsOpen] = useState(false);
-    const [ReviseModalIsOpen, setReviseModalIsOpen] = useState(false);
+
 
     return (
         <Body>
             <Headbar>
                 <Logotext>ShowBlog</Logotext>
-                <UserName>{atUserName} 님</UserName>
+                <UserName>안녕 님</UserName>
                 <LogoutButton onClick={back}>로그아웃하기</LogoutButton>
             </Headbar>
             <Contentbar>
@@ -732,101 +598,58 @@ function Main(params) {
                             }} isOpen={ModalIsOpen}>
                                 <BoardMakeLogo>게시물 만들기</BoardMakeLogo>
                                 <BoardMakeLine></BoardMakeLine>
-                                <BoardMakeName>{atUserName}</BoardMakeName>
+                                <BoardMakeName>안녕</BoardMakeName>
                                 <BoardMakeDiv>
-                                    <BoardMakeText name="text" placeholder='지금 무슨 생각을 하고 있나요?' onChange={onChange} />
+                                    <BoardMakeText placeholder='지금 무슨 생각을 하고 있나요?' />
                                     <BoardAddItemDiv>
                                         <BoardAddItemText>게시물 추가</BoardAddItemText>
-                                        <BoardAddItemInput>
-                                            <input name='picture' placeholder='이미지 url 불러와주세요!' onChange={onChange} /></BoardAddItemInput>
+                                        <BoardAddItemButton>파일첨부 하기</BoardAddItemButton>
                                     </BoardAddItemDiv>
                                 </BoardMakeDiv>
                                 <BoardMakeButtonDiv>
-                                    <BoardMakeYesButton onClick={() => {
-                                        setModalIsOpen(false)
-                                        boardItemsPut()
-                                    }}>게시하기</BoardMakeYesButton>
+                                    <BoardMakeYesButton onClick={() => setModalIsOpen(false)}>게시하기</BoardMakeYesButton>
                                     <BoardMakeNoButton onClick={() => setModalIsOpen(false)}>뒤로가기</BoardMakeNoButton>
-                                </BoardMakeButtonDiv>
-                            </Modal>
-
-                            <Modal style={{
-                                overlay: {
-                                    position: 'fixed',
-                                    top: 100,
-                                    left: 300,
-                                    right: 300,
-                                    bottom: 100,
-                                    background: 'rgba(0,0,0,0)'
-                                }
-                            }} isOpen={ReviseModalIsOpen}>
-                                <BoardMakeLogo>게시물 수정하기</BoardMakeLogo>
-                                <BoardMakeLine></BoardMakeLine>
-                                <BoardMakeName>{atUserName}</BoardMakeName>
-                                <BoardMakeDiv>
-                                    <BoardMakeText name="userwrite" placeholder='지금 무슨 생각을 하고 있나요?' onChange={onBoardChange} value={boardinput.userwrite} />
-                                    <BoardAddItemDiv>
-                                        <BoardAddItemText>게시물 추가하기</BoardAddItemText>
-                                        <BoardAddItemInput>
-                                            <input name='userpicture' placeholder='이미지 url 불러와주세요!' onChange={onBoardChange} value={boardinput.userpicture} /></BoardAddItemInput>
-                                    </BoardAddItemDiv>
-                                </BoardMakeDiv>
-                                <BoardMakeButtonDiv>
-                                    <BoardMakeYesButton onClick={() => {
-                                        setReviseModalIsOpen(false)
-                                        boardItemsEdit(boardinput.id)
-                                    }}>수정하기</BoardMakeYesButton>
-                                    <BoardMakeNoButton onClick={() => setReviseModalIsOpen(false)}>취소하기</BoardMakeNoButton>
                                 </BoardMakeButtonDiv>
                             </Modal>
                             <ContentBoardFeelButton>기분을 나타내보세요!</ContentBoardFeelButton>
                         </ContentBoardButtonDiv>
                     </ContentBoard>
-
-                    {(board.reverse()).map((value, index) => {
-                        // console.log(value.picture)
-                        return (
-                            <ContentBoardList key={index}>
-                                <ContentBoardListDiv>
-                                    <div>
-                                        <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>{value.username}</p>
-                                        <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>{value.usertime}</p>
-                                    </div>
-                                    <div style={{ paddingLeft: '450px' }}>
-                                        {atUserName == value.username &&
-                                            <>
-                                                <p style={{ fontSize: 20, color: 'orange' }} onClick={() => {
-                                                    console.log('수정');
-                                                    setboardinput({
-                                                        id: value.id,
-                                                        username: value.username,
-                                                        userpicture: value.userpicture,
-                                                        usertime: value.usertime,
-                                                        userwrite: value.userwrite,
-                                                    })
-                                                    setReviseModalIsOpen(true)
-                                                }} >수정하기</p>
-
-                                                <p style={{ fontSize: 20, marginTop: '-20px' }} onClick={() => {
-                                                    console.log('삭제')
-                                                    boardItemsDelete(value.id)
-                                                }} >삭제하기</p>
-                                            </>
-                                        }
-                                    </div>
-                                </ContentBoardListDiv>
-                                <ContentBoardLine></ContentBoardLine>
-                                <ContentBoardListDiv>
-                                    <p style={{ paddingLeft: 20, }}>{value.userwrite}</p>
-                                </ContentBoardListDiv>
-                                <ContentBoardListView>
-                                    <img src={value.userpicture} style={{ width: '100%', height: '100%' }} />
-                                </ContentBoardListView>
-                            </ContentBoardList>
-                        )
-                    })}
-                    {/* <h1>gg</h1> */}
-
+                    <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListDiv>
+                            <p style={{ paddingLeft: 20, }}>adadad</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardListView></ContentBoardListView>
+                    </ContentBoardList>
+                    <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListView></ContentBoardListView>
+                    </ContentBoardList>
+                    <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListView></ContentBoardListView>
+                    </ContentBoardList>
+                    <ContentBoardList>
+                        <ContentBoardListDiv>
+                            <p style={{ fontSize: 25, paddingLeft: 20, paddingTop: 5, fontWeight: 'bold' }}>안녕 </p>
+                            <p style={{ paddingLeft: 20, color: 'gray', marginTop: -20 }}>시간</p>
+                        </ContentBoardListDiv>
+                        <ContentBoardLine></ContentBoardLine>
+                        <ContentBoardListView>
+                        </ContentBoardListView>
+                    </ContentBoardList>
                 </BoardDiv>
                 <Rightside>
                     <RightsidefriendBoard>
